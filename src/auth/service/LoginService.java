@@ -1,0 +1,26 @@
+package auth.service;
+
+import java.sql.Connection;
+
+import jdbc.connection.ConnectionProvider;
+import member.dao.MemberDao;
+import member.model.Member;
+
+public class LoginService {
+	private MemberDao mbDao = new MemberDao();
+
+	public User login(String id, String password) {
+		try (Connection conn = ConnectionProvider.getConnection()) {
+			Member member = mbDao.selectById(conn, id);
+			if (member == null) {
+				throw new LoginFailException();
+			}
+			if (!member.matchPassword(password)) {
+				throw new LoginFailException();
+			}
+			return new User(member.getId(), member.getPassword());
+		} catch (Exception e) {
+			throw new RuntimeException(e);
+		}
+	}
+}
