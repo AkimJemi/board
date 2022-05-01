@@ -36,6 +36,14 @@ public class WriteArticleHandler implements CommandHandler {
 	}
 
 	private String processSubmit(HttpServletRequest req, HttpServletResponse res) {
+		int num = 1;
+		boolean freepass = false;
+		int pageNo=1;
+		if (req.getParameter("freepass") != null && req.getParameter("num") != null && req.getParameter("pageNo") !=null) {
+			pageNo = Integer.parseInt(req.getParameter("pageNo"));
+			freepass = true;
+			num = Integer.parseInt(req.getParameter("num"));
+		}
 		Map<String, Boolean> errors = new HashMap<String, Boolean>();
 		req.setAttribute("errors", errors);
 		User user = (User) req.getSession().getAttribute("authUser");
@@ -43,10 +51,15 @@ public class WriteArticleHandler implements CommandHandler {
 		if (!errors.isEmpty()) {
 			return FORM_VIEW;
 		}
-		int newArticleNo = writeService.write(wr);
-		req.setAttribute("newArticleNo", newArticleNo);
+		if (freepass) {
 
-		return "/WEB-INF/view/newArticleSuccess.jsp";
+			int newArticleNo = writeService.write(wr, num);
+			return "list.do?pageNo="+pageNo;
+		} else {
+			int newArticleNo = writeService.write(wr, num);
+			req.setAttribute("newArticleNo", newArticleNo);
+			return "/WEB-INF/view/newArticleSuccess.jsp";
+		}
 
 	}
 

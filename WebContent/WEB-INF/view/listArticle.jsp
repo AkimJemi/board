@@ -6,11 +6,26 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script type="text/javascript">
+function autoInsert(num, url, pageNo){
+		alert(pageNo);
+		var url2 ='write.do?title=1&content=1&freepass=1&num='+num +'&pageNo='+pageNo;
+	    let f = document.createElement('form');
+	    f.setAttribute('method', 'post');
+	    f.setAttribute('action', url2);
+	    document.body.appendChild(f);
+	    f.submit();
+}
+
+</script>
 </head>
 <body>
-	<table border='1'>
+	<table border='1' width="700">
 		<tr>
 			<td colspan="4"><a href="write.do">[게시글 쓰기]</a><a href="<%=request.getContextPath()%>/index.jsp">[ 목록으로 ]</a>
+			<a href="javascript:void(0)" onclick="autoInsert(5, '<%=request.getContextPath()%>', '${articlePage.currentPage }')">[ 자동 추가5 ]</a>
+			<a href="javascript:void(0)"  onclick="autoInsert(10, '<%=request.getContextPath()%>', '${articlePage.currentPage }')">[ 자동 추가10 ]</a>
+			<a href="javascript:void(0)" onclick="autoInsert(15, '<%=request.getContextPath()%>', '${articlePage.currentPage }')">[ 자동 추가15 ]</a>
 		</tr>
 		<tr>
 			<td>번호</td>

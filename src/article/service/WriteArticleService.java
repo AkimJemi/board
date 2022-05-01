@@ -15,19 +15,30 @@ public class WriteArticleService {
 private ArticleDao articleDao = new ArticleDao();
 private ArticleContentDao contentDao = new ArticleContentDao();
 
-public Integer write( WriteRequest req) {
+public Integer write( WriteRequest req, int num) {
 	Connection conn = null;
 	try {
 		conn = ConnectionProvider.getConnection();
 		conn.setAutoCommit(false);
 		Article article = toArticle(req);
-		Article savedArticle = articleDao.insert(conn, article);
+		Article savedArticle = null;
+		ArticleContent content =null;
+		ArticleContent savedContent =null;
+		
+		if(num == 1) {
+			savedArticle=  articleDao.insert(conn, article);
+			content =new ArticleContent(savedArticle.getNumber(), req.getContent());
+			savedContent = contentDao.insert(conn, content);
+		}else {
+			for(int i = 0; i<num ; i++) {
+				savedArticle=  articleDao.insert(conn, article);
+				content =new ArticleContent(savedArticle.getNumber(), req.getContent());
+				savedContent = contentDao.insert(conn, content);
+			}
+		}
 		if(savedArticle==null) {
 			throw new RuntimeException();
 		}
-
-		ArticleContent content = new ArticleContent(savedArticle.getNumber(), req.getContent());
-		ArticleContent savedContent = contentDao.insert(conn, content);
 		if(savedContent == null) {
 			throw new RuntimeException("fail to insert article_content");
 		}
