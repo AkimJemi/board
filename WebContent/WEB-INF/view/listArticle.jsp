@@ -29,10 +29,8 @@
 					href="read.do?no=${article.number }&pageNo=${articlePage.currentPage}">${article.number }
 				</a></td>
 				<td><c:out value="${article.title }" /></td>
-
-				</td>
-				<td>${article.writer.name }</td>
 				<td>${article.readCount }</td>
+				<td>${article.writer.name }</td>
 			</tr>
 		</c:forEach>
 		<c:if test="${articlePage.hasArticles()}">

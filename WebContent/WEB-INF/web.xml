@@ -5,9 +5,13 @@
 	id="WebApp_ID" version="4.0">
 	<display-name>cosmoBoard</display-name>
 
-	<filter>
+	<filter>		
 		<filter-name>LoginCheckFilter</filter-name>
 		<filter-class>filter.LoginCheckFilter</filter-class>
+		<init-param>
+			<param-name>filterInitParam</param-name>
+			<param-value>김재민</param-value>
+		</init-param>
 	</filter>
 	<filter-mapping>
 		<filter-name>LoginCheckFilter</filter-name>
@@ -45,14 +49,12 @@
 		<filter-name>encodingFilter</filter-name>
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
-
-
 	<servlet>
 		<servlet-name>ControllerUsingURI</servlet-name>
 		<servlet-class>mvc.controller.ControllerUsingURI</servlet-class>
 		<init-param>
 			<param-name>configFile</param-name>
-			<param-value>/WEB-INF/commandHandlderURI.properties</param-value>
+			<param-value>/WEB-INF/commandHandlerURI.properties</param-value>
 		</init-param>
 		<load-on-startup>1</load-on-startup>
 	</servlet>
@@ -60,8 +62,7 @@
 		<servlet-name>ControllerUsingURI</servlet-name>
 		<url-pattern>*.do</url-pattern>
 	</servlet-mapping>
-	
-	
+
 	<welcome-file-list>
 		<welcome-file>index.html</welcome-file>
 		<welcome-file>index.htm</welcome-file>
@@ -71,3 +72,4 @@
 		<welcome-file>default.jsp</welcome-file>
 	</welcome-file-list>
 </web-app>
+	

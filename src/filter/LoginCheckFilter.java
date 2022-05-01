@@ -35,6 +35,10 @@ public class LoginCheckFilter implements Filter {
 
 	@Override
 	public void init(FilterConfig filterConfig) throws ServletException {
+		System.out.println("FilterConfig --- ");
+		System.out.println(filterConfig.getFilterName());
+		System.out.println(filterConfig.getInitParameter("filterInitParam"));
+		
 	}
 
 }

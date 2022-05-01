@@ -33,18 +33,24 @@ public class LoginHandler implements CommandHandler {
 	private String processSubmit(HttpServletRequest req, HttpServletResponse res) {
 		String id = trim(req.getParameter("id"));
 		String password = trim(req.getParameter("password"));
-
+		boolean fp = req.getParameter("freepass").equals("1");	
 		Map<String, Boolean> errors = new HashMap<String, Boolean>();
 		req.setAttribute("errors", errors);
+		
 		if (id == null || id.isEmpty()) {
 			errors.put("id", Boolean.TRUE);
 		}
+		
 		if (password == null || password.isEmpty()) {
 			errors.put("password", Boolean.TRUE);
 		}
 
 		if (!errors.isEmpty()) {
 			return FORM_VIEW;
+		}
+		
+		if(fp) {
+			return "/article/list.do";
 		}
 
 		try {

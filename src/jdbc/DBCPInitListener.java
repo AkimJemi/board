@@ -19,10 +19,13 @@ public class DBCPInitListener implements ServletContextListener {
 
 	@Override
 	public void contextInitialized(ServletContextEvent sce) {
-		String poolConfig = sce.getServletContext().getInitParameter("poolConfig");
+		String poolConfig = sce.getServletContext().getInitParameter("poolConfig"); // web.xml <context-param> - <param-name>
 		Properties prop = new Properties();
 		try {
-			prop.load(new StringReader(poolConfig));
+			prop.load(new StringReader(poolConfig)); 
+			// "키=값" 형식으로 구성된 문자열으로 프로퍼티를 로딩
+			// poolCofig 컨텐스트 초기화 파라미터가 키값 형식을 가지므로 Properties 객체에 프로퍼티로 등록
+			
 		} catch (Exception e) {
 			throw new RuntimeException();
 		}

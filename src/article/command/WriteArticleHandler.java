@@ -17,7 +17,6 @@ public class WriteArticleHandler implements CommandHandler {
 	private WriteArticleService writeService = new WriteArticleService();
 
 	public WriteArticleHandler() {
-		System.out.println("sss");
 	}
 
 	@Override
