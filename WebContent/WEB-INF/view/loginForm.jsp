@@ -24,6 +24,7 @@
 			<c:if test="${errors.password }">암호를 입력하세요.</c:if>
 		</p>
 		<input type="submit" value="로그인" />
+		<input type="button" onClick="location.href= '<%=request.getContextPath()%>/index.jsp'" value="목록으로 돌아가기"/>
 
 	</form>
 

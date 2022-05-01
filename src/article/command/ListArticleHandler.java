@@ -15,11 +15,12 @@ public class ListArticleHandler implements CommandHandler {
 		String pageNoVal = req.getParameter("pageNo");
 		int pageNo = 1;
 		if (pageNoVal != null) {
-pageNo = Integer.parseInt(pageNoVal);
+			pageNo = Integer.parseInt(pageNoVal);
 		}
 		ArticlePage articlepage = listService.getArticlePage(pageNo);
 		req.setAttribute("articlePage", articlepage);
 		return "/WEB-INF/view/listArticle.jsp";
 	}
+	
 
 }

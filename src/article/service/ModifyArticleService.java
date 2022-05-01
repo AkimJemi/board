@@ -16,7 +16,6 @@ public class ModifyArticleService {
 	public void modify(ModifyRequest modReq) {
 		Connection conn = null;
 		try {
-			System.out.println("(2)modify/ modReq.getContent()  : " +modReq.getContent());
 			conn = ConnectionProvider.getConnection();
 			conn.setAutoCommit(false);
 			Article article = articleDao.selectById(conn, modReq.getArticleNumber());

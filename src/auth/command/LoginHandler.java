@@ -33,14 +33,17 @@ public class LoginHandler implements CommandHandler {
 	private String processSubmit(HttpServletRequest req, HttpServletResponse res) {
 		String id = trim(req.getParameter("id"));
 		String password = trim(req.getParameter("password"));
-		boolean fp = req.getParameter("freepass").equals("1");	
+		boolean fp = false;
+		if (req.getParameter("freepass") != null) {
+			fp = true;
+		}
 		Map<String, Boolean> errors = new HashMap<String, Boolean>();
 		req.setAttribute("errors", errors);
-		
+
 		if (id == null || id.isEmpty()) {
 			errors.put("id", Boolean.TRUE);
 		}
-		
+
 		if (password == null || password.isEmpty()) {
 			errors.put("password", Boolean.TRUE);
 		}
@@ -48,25 +51,30 @@ public class LoginHandler implements CommandHandler {
 		if (!errors.isEmpty()) {
 			return FORM_VIEW;
 		}
-		
-		if(fp) {
-			return "/article/list.do";
-		}
+	
+	
 
 		try {
 			User user = loginService.login(id, password);
 			req.getSession().setAttribute("authUser", user);
-			res.sendRedirect(req.getContextPath()+"/index.jsp");
+			if (fp) {
+//				return "/article/list.do"; // 안되는 이유는?
+				res.sendRedirect(req.getContextPath() + "/article/list.do");
+			}
+			else {
+			res.sendRedirect(req.getContextPath() + "/index.jsp");
+			}
 			return null;
 		} catch (Exception e) {
 			errors.put("idOrPwNotMatch", Boolean.TRUE);
 			return FORM_VIEW;
 		}
+		
 
 	}
 
 	private String trim(String str) {
-		return str == null ? null:str.trim();
+		return str == null ? null : str.trim();
 	}
 
 }

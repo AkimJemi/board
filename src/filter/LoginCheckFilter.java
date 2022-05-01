@@ -22,7 +22,6 @@ public class LoginCheckFilter implements Filter {
 		HttpSession session = request.getSession(false);
 		if(session==null||session.getAttribute("authUser") ==null) {
 			HttpServletResponse response = (HttpServletResponse) res;
-			System.out.println("request.getContentType() : " + request.getContextPath()); 
 			response.sendRedirect(request.getContextPath()+"/login.do");
 		}else {
 			cha.doFilter(req, res);
@@ -35,9 +34,6 @@ public class LoginCheckFilter implements Filter {
 
 	@Override
 	public void init(FilterConfig filterConfig) throws ServletException {
-		System.out.println("FilterConfig --- ");
-		System.out.println(filterConfig.getFilterName());
-		System.out.println(filterConfig.getInitParameter("filterInitParam"));
 		
 	}
 

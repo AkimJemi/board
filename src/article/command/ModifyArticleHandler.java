@@ -62,9 +62,7 @@ public class ModifyArticleHandler implements CommandHandler {
 
 		User authUser = (User) req.getSession().getAttribute("authUser");
 		String noVal = req.getParameter("no");
-		System.out.println("processSubmit : " + noVal);
 		int no = Integer.parseInt(noVal);
-		System.out.println("processSubmit2 : " + no);
 		ModifyRequest modReq = new ModifyRequest(authUser.getId(), no, req.getParameter("title"),
 				req.getParameter("content"));
 		req.setAttribute("modReq", modReq);

@@ -20,7 +20,7 @@ public class JoinHandler implements CommandHandler {
 		if (req.getMethod().equalsIgnoreCase("GET")) {
 			return processForm(req, res);
 		} else if (req.getMethod().equalsIgnoreCase("POST")) {
-			return processSubmit(req, res); // 오류 발견  *processSubmit
+			return processSubmit(req, res); // 오류 발견 *processSubmit
 		} else {
 			res.setStatus(HttpServletResponse.SC_METHOD_NOT_ALLOWED);
 			return null;
@@ -32,11 +32,14 @@ public class JoinHandler implements CommandHandler {
 	}
 
 	private String processSubmit(HttpServletRequest req, HttpServletResponse res) {
-		JoinRequest jr = new JoinRequest();
-		jr.setId(req.getParameter("id"));
-		jr.setName(req.getParameter("name"));
-		jr.setPassword(req.getParameter("password"));
-		jr.setConfirmPassword(req.getParameter("confirmPassword"));
+		JoinRequest jr = new JoinRequest(req.getParameter("id"), req.getParameter("name"), req.getParameter("password"),
+				req.getParameter("confirmPassword"));
+//		JoinRequest jr = new JoinRequest();
+//		jr.setId(req.getParameter("id"));
+//		jr.setName(req.getParameter("name"));
+//		jr.setPassword("password");
+//		jr.setConfirmPassword("confirmPassword");
+
 		Map<String, Boolean> errors = new HashMap<String, Boolean>();
 		req.setAttribute("errors", errors);
 		jr.validate(errors);

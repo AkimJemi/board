@@ -103,7 +103,6 @@ public class ArticleDao {
 	}
 
 	public Article selectById(Connection conn, int no) throws SQLException {
-		System.out.println("selectById");
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 

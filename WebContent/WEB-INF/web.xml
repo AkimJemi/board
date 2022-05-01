@@ -21,9 +21,10 @@
 	</filter-mapping>
 
 
-	<listener>
+	<listener> <!-- 하나 이상의 listener 등록 가능 / 시작시 순서대로 종료될 때에는 반대로-->
 		<listener-class>jdbc.DBCPInitListener</listener-class>
 	</listener>
+	
 	<context-param>
 		<param-name>poolConfig</param-name>
 		<param-value>

@@ -8,6 +8,17 @@ public class JoinRequest {
 	private String password;
 	private String confirmPassword;
 
+	
+	public JoinRequest() {
+	}
+
+	public JoinRequest(String id, String name, String password, String confirmPassword) {
+		this.id = id;
+		this.name = name;
+		this.password = password;
+		this.confirmPassword = confirmPassword;
+	}
+
 	public String getId() {
 		return id;
 	}
