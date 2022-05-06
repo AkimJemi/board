@@ -12,12 +12,12 @@ public class Member {
 	private Date regDate;
 
 	public Member(String id, String name, String password, Date regDate) {
-		super();
 		this.id = id;
 		this.name = name;
 		this.password = password;
 		this.regDate = regDate;
 	}
+	
 
 	public String getId() {
 		return id;

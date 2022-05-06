@@ -16,7 +16,7 @@
 </p>
 <p>
 내용 : <br/> <textarea rows="5" cols="30" name="content">${param.content }</textarea>
-<c:if test="${errors.title }">제목을 입력하세요</c:if>
+<c:if test="${errors.content }">제목을 입력하세요</c:if>
 </p>
 <input type="submit"  value="새 글 등록"/>
 </form>

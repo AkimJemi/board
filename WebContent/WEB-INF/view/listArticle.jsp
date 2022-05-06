@@ -16,7 +16,6 @@ function autoInsert(num, url, pageNo){
 	    document.body.appendChild(f);
 	    f.submit();
 }
-
 </script>
 </head>
 <body>
